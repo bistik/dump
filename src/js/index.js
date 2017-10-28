@@ -1,5 +1,6 @@
 const { app, BrowserWindow }  = require('electron');
 const path = require('path');
+const foo = require('./foo.js');
 
 let mainWindow;
 const DEBUG = true;
@@ -14,6 +15,7 @@ function loadWindow () {
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show();
+    foo();
   });
 }
 
