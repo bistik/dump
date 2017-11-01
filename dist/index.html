@@ -1,22 +1,42 @@
 <html>
     <head>
         <title>Hello dump</title>
-        <link rel="stylesheet" media="screen" href="style.css">
+        <link rel="stylesheet" media="screen" href="styles.css">
     </head>
     <body>
-        <h1>Hello dump</h1>
-        <form>
-            <div>
-                <input name="title" type="text">
+        <div class="container">
+            <h1>Hello dump</h1>
+            <div class="row">
+                <div class="col-3" id="sidebar">
+                    <ul class="list-unstyled">
+                        <li><a href='#'>List1</a></li>
+                        <li><a href='#'>List2</a></li>
+                        <li><a href='#'>List3</a></li>
+                    </ul>
+                </div>
+                <div class="col-9" id="content">
+                    <h2>List 1</h2>
+                    <form>
+                        <div>
+                            <input name="title" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <button type="submit">Add Task</a>
+                        </div>
+                        <button type="button">Save</button>
+                    </form>
+                </div>
             </div>
-            <div>
-                <a href="#">Add Task</a>
-            </div>
-            <button type="button">Save</button>
-        </form>
+        </div>
         <script>
-            console.log(process.versions);
+            //var level = require('level');
+            var electron = require('electron');
+            var userDataPath = (electron.app || electron.remote.app).getPath('userData');
+            var myWindow = electron.remote.getCurrentWindow();
+            //var db = level(userDataPath + '/dump.db');
+            //window.db = db;
         </script>
+        <script src="bundle.js"></script>
         <script>
             require('./renderer.js');
         </script>

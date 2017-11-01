@@ -5,23 +5,32 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron dist/bundle.js",
+    "start": "electron index.js",
     "dev": "webpack --config webpack.dev.js",
     "shit": "webpack --config dump.webpack.config.js",
-    "production": "webpack --config webpack.prod.js"
+    "production": "webpack --config webpack.prod.js",
+    "rebuild": "electron-rebuild -f -w sqlite3"
   },
   "keywords": [],
   "author": "bistik",
   "license": "ISC",
   "devDependencies": {
+    "bootstrap": "^4.0.0-beta.2",
     "css-loader": "^0.28.7",
     "electron": "^1.7.9",
+    "electron-rebuild": "^1.6.0",
+    "extract-text-webpack-plugin": "^3.0.2",
     "html-webpack-plugin": "^2.30.1",
+    "jquery": "^3.2.1",
+    "node-sass": "^4.5.3",
+    "popper.js": "^1.12.6",
+    "sass-loader": "^6.0.6",
     "style-loader": "^0.19.0",
     "uglifyjs-webpack-plugin": "^1.0.1",
     "webpack": "^3.8.1"
   },
   "dependencies": {
-    "nedb": "^1.8.0"
+    "level": "^2.0.0",
+    "sqlite3": "^3.1.13"
   }
 }

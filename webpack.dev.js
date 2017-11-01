@@ -1,14 +1,27 @@
 const path = require('path');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 let config = {
   target: 'electron',
 
-  entry: './src/js/index.js',
+  entry: './src/js/main.js',
 
   output: {
     path: __dirname + '/dist',
     filename: 'bundle.js'
+  },
+
+  module: {
+    rules: [
+      {
+        test: /\.s[ac]ss$/,
+        use: ExtractTextPlugin.extract({
+          use: ['css-loader', 'sass-loader'],
+          fallback: 'style-loader'
+        })
+      }
+    ]
   },
 
   node: {
@@ -16,7 +29,16 @@ let config = {
   },
 
   plugins: [
+    new ExtractTextPlugin('styles.css'),
+
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+      Popper: ['popper.js', 'default']
+    })
   ]
+
 };
 
 module.exports = config;
