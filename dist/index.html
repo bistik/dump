@@ -21,24 +21,18 @@
                             <input name="title" type="text" class="form-control">
                         </div>
                         <div>
-                            <button type="submit">Add Task</a>
+                            <button type="submit" class="btn btn-success">Add Task</a>
                         </div>
-                        <button type="button">Save</button>
+                        <div>
+                        <button type="button" class="btn btn-success">Save</a>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
-        <script>
-            //var level = require('level');
-            var electron = require('electron');
-            var userDataPath = (electron.app || electron.remote.app).getPath('userData');
-            var myWindow = electron.remote.getCurrentWindow();
-            //var db = level(userDataPath + '/dump.db');
-            //window.db = db;
-        </script>
         <script src="bundle.js"></script>
         <script>
-            require('./renderer.js');
+            //require('./renderer.js');
         </script>
     </body>
 </html>

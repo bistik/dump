@@ -12,6 +12,10 @@ let config = {
     filename: 'bundle.js'
   },
 
+  externals: {
+    sqlite3: "sqlite3"
+  },
+
   module: {
     rules: [
       {
@@ -36,7 +40,9 @@ let config = {
       jQuery: 'jquery',
       'window.jQuery': 'jquery',
       Popper: ['popper.js', 'default']
-    })
+    }),
+
+    new webpack.IgnorePlugin(new RegExp("^(sqlite3)"))
   ]
 
 };

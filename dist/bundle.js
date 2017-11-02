@@ -69,12 +69,13 @@
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__css_main_scss__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__css_main_scss__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__css_main_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__css_main_scss__);
 const foo = __webpack_require__(1);
+const db = __webpack_require__(2);
 
 
-foo();
+db.test();
 
 
 /***/ }),
@@ -82,6 +83,7 @@ foo();
 /***/ (function(module, exports) {
 
 
+/*
 function dbTest (db) {
   db.serialize(function() {
     db.run("CREATE TABLE lorem (info TEXT)");
@@ -99,12 +101,12 @@ function dbTest (db) {
    
   db.close();
 }
+*/
 var foo = function () {
 
   if (myWindow.sqlite3) {
     let db = new myWindow.sqlite3.Database(myWindow.dbfile);
     console.log('has window.db');
-//    dbTest(db);
   } else {
     console.log('No window.db');
   }
@@ -115,6 +117,45 @@ module.exports = foo;
 
 /***/ }),
 /* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+const { app, remote }  = __webpack_require__(3);
+const userDataPath = (app || remote.app).getPath('userData');
+const sqlite3 = window.require('sqlite3').verbose();
+
+//var db = new sqlite3.Database(mainWindow.dbfile);
+let _db = new sqlite3.Database(userDataPath + '/dump.sqlite.db');
+let db = {
+  test: function () {
+    _db.serialize(function() {
+      _db.run("CREATE TABLE IF NOT EXISTS todo (info TEXT)");
+      _db.run("CREATE TABLE IF NOT EXISTS notes (info TEXT)");
+     
+      /*
+      var stmt = _db.prepare("INSERT INTO foobar VALUES (?)");
+      for (var i = 0; i < 10; i++) {
+          stmt.run("Ipsum " + i);
+      }
+      stmt.finalize();
+     
+      _db.each("SELECT rowid AS id, info FROM lorem", function(err, row) {
+          console.log(row.id + ": " + row.info);
+      });
+      */
+    });
+  }
+};
+module.exports = db;
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+module.exports = require("electron");
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

@@ -1,4 +1,5 @@
 
+/*
 function dbTest (db) {
   db.serialize(function() {
     db.run("CREATE TABLE lorem (info TEXT)");
@@ -16,12 +17,12 @@ function dbTest (db) {
    
   db.close();
 }
+*/
 var foo = function () {
 
   if (myWindow.sqlite3) {
     let db = new myWindow.sqlite3.Database(myWindow.dbfile);
     console.log('has window.db');
-//    dbTest(db);
   } else {
     console.log('No window.db');
   }

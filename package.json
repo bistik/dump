@@ -30,7 +30,6 @@
     "webpack": "^3.8.1"
   },
   "dependencies": {
-    "level": "^2.0.0",
     "sqlite3": "^3.1.13"
   }
 }

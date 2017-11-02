@@ -1,13 +1,12 @@
 const { app, BrowserWindow, remote }  = require('electron');
 const path = require('path');
 const userDataPath = (app || remote.app).getPath('userData');
-const sqlite3 = require('sqlite3').verbose();
 
 let mainWindow;
 
 function dbTest (db) {
   db.serialize(function() {
-    db.run("CREATE TABLE lorem (info TEXT)");
+    db.run("CREATE TABLE lorem (info TEXT) IF NOT EXISTS");
    
     var stmt = db.prepare("INSERT INTO lorem VALUES (?)");
     for (var i = 0; i < 10; i++) {
@@ -22,6 +21,7 @@ function dbTest (db) {
    
   db.close();
 }
+
 function loadWindow () {
   mainWindow = new BrowserWindow({show: false, width: 800, height: 600});
   mainWindow.loadURL(path.join('file://', __dirname, 'dist/index.html'));
@@ -31,11 +31,10 @@ function loadWindow () {
   }
 
   console.log('userDataPath', userDataPath);
-  mainWindow.test = 'testfoo';
-  mainWindow.dbfile = userDataPath + '/dump.sqlite.db';
-  mainWindow.sqlite3 = sqlite3;
-  var db = new sqlite3.Database(mainWindow.dbfile);
-  dbTest(db);
+ // mainWindow.test = 'testfoo';
+ // mainWindow.dbfile = userDataPath + '/dump.sqlite.db';
+  //var db = new sqlite3.Database(mainWindow.dbfile);
+  //dbTest(db);
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show();
