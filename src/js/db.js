@@ -4,12 +4,25 @@ const sqlite3 = window.require('sqlite3').verbose();
 
 //var db = new sqlite3.Database(mainWindow.dbfile);
 let _db = new sqlite3.Database(userDataPath + '/dump.sqlite.db');
-let db = {
-  test: function () {
+
+function createTables () {
     _db.serialize(function() {
       _db.run("CREATE TABLE IF NOT EXISTS todo (info TEXT)");
       _db.run("CREATE TABLE IF NOT EXISTS notes (info TEXT)");
-     
+    });
+}
+
+function showInfo () {
+  _db.serialize(function() {
+    _db.each("SELECT name FROM sqlite_master WHERE type='table'", function(err, row) {
+      console.log('table: ', row.name);
+    });  
+  });
+}
+
+let db = {
+  test: createTables,
+  info: showInfo     
       /*
       var stmt = _db.prepare("INSERT INTO foobar VALUES (?)");
       for (var i = 0; i < 10; i++) {
@@ -21,7 +34,5 @@ let db = {
           console.log(row.id + ": " + row.info);
       });
       */
-    });
-  }
 };
 module.exports = db;

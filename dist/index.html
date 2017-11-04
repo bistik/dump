@@ -4,35 +4,16 @@
         <link rel="stylesheet" media="screen" href="styles.css">
     </head>
     <body>
-        <div class="container">
-            <h1>Hello dump</h1>
-            <div class="row">
-                <div class="col-3" id="sidebar">
-                    <ul class="list-unstyled">
-                        <li><a href='#'>List1</a></li>
-                        <li><a href='#'>List2</a></li>
-                        <li><a href='#'>List3</a></li>
-                    </ul>
-                </div>
-                <div class="col-9" id="content">
-                    <h2>List 1</h2>
-                    <form>
-                        <div>
-                            <input name="title" type="text" class="form-control">
-                        </div>
-                        <div>
-                            <button type="submit" class="btn btn-success">Add Task</a>
-                        </div>
-                        <div>
-                        <button type="button" class="btn btn-success">Save</a>
-                        </div>
-                    </form>
-                </div>
-            </div>
+        <div class="container" id="root">
         </div>
-        <script src="bundle.js"></script>
         <script>
-            //require('./renderer.js');
+        {
+            if (process.env.NODE_ENV == 'dev') {
+                document.write('<script defer src="http://localhost:8080/dist/bundle.js"><\/script>');
+            } else {
+                document.write('<script defer src="bundle.js"><\/script>');
+             }
+         }
         </script>
     </body>
 </html>

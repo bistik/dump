@@ -9,6 +9,7 @@ let config = {
 
   output: {
     path: __dirname + '/dist',
+    publicPath: 'http://localhost:8080/dist/',
     filename: 'bundle.js'
   },
 
@@ -24,6 +25,13 @@ let config = {
           use: ['css-loader', 'sass-loader'],
           fallback: 'style-loader'
         })
+      },
+      {
+        test: /\.(js|jsxa)$/,
+        exclude: /node_modules/,
+        use: [
+          'babel-loader',
+        ],
       }
     ]
   },
@@ -40,6 +48,12 @@ let config = {
       jQuery: 'jquery',
       'window.jQuery': 'jquery',
       Popper: ['popper.js', 'default']
+    }),
+
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': '"dev"'
+      }
     }),
 
     new webpack.IgnorePlugin(new RegExp("^(sqlite3)"))
