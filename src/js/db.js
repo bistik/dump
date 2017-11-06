@@ -3,7 +3,8 @@ const userDataPath = (app || remote.app).getPath('userData');
 const sqlite3 = window.require('sqlite3').verbose();
 
 //var db = new sqlite3.Database(mainWindow.dbfile);
-let _db = new sqlite3.Database(userDataPath + '/dump.sqlite.db');
+let dbFile = userDataPath + '/dumpsqlite.db';
+let _db = new sqlite3.Database(dbFile);
 
 function createTables () {
     _db.serialize(function() {
@@ -13,6 +14,7 @@ function createTables () {
 }
 
 function showInfo () {
+  console.log(dbFile);
   _db.serialize(function() {
     _db.each("SELECT name FROM sqlite_master WHERE type='table'", function(err, row) {
       console.log('table: ', row.name);

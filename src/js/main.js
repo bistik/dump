@@ -3,21 +3,26 @@ const db = require('./db.js');
 import React from 'react';
 import ReactDom from 'react-dom';
 import css from '../css/main.scss';
+import App from './components/App.js';
+import { AppContainer } from 'react-hot-loader';
 
-console.log('date', new Date());
 console.log('process.env.NODE_ENV', process.env.NODE_ENV)
+console.log('process.env.UPGRADE_EXTENSIONS', process.env.UPGRADE_EXTENSIONS)
 db.test();
 db.info();
 
-class App extends React.Component {
-    render(){
-       return(
-           <div>
-              <h1> the list  : update : hello, again</h1>
-              <h2>another line</h2>
-           </div>
-        );
-     }
+const render = Component => {
+  ReactDom.render(
+    <AppContainer>
+      <Component />
+    </AppContainer>,
+    document.getElementById('root'),
+  )
 }
 
-ReactDom.render(<App/>, document.getElementById('root'));
+render(App)
+// ReactDom.render(<App/>, document.getElementById('root'));
+//
+if (module.hot) {
+  module.hot.accept('./components/App', () => { render(App) });
+}

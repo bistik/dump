@@ -5,12 +5,23 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 let config = {
   target: 'electron',
 
-  entry: './src/js/main.js',
+  entry: [
+    'react-hot-loader/patch',
+    `webpack-dev-server/client?http://localhost:8080/`,
+    './src/js/main.js',
+  ],
+
+  devtool: 'inline-source-map',
+
+  devServer: {
+    contentBase: './dist',
+    hot: true
+  },
 
   output: {
-    path: __dirname + '/dist',
+    // path: __dirname + '/dist',
     publicPath: 'http://localhost:8080/dist/',
-    filename: 'bundle.js'
+    //filename: 'bundle.js'
   },
 
   externals: {
@@ -36,10 +47,6 @@ let config = {
     ]
   },
 
-  node: {
-    __dirname: false // __dirname resolves to '/' and not the current_dir when this is TRUE
-  },
-
   plugins: [
     new ExtractTextPlugin('styles.css'),
 
@@ -51,13 +58,19 @@ let config = {
     }),
 
     new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': '"dev"'
-      }
+      'process.env.NODE_ENV': JSON.stringify('dev'),
+      'process.env.UPGRADE_EXTENSIONS': JSON.stringify(true)
     }),
 
-    new webpack.IgnorePlugin(new RegExp("^(sqlite3)"))
-  ]
+    new webpack.IgnorePlugin(new RegExp("^(sqlite3)")),
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin()
+  ],
+
+  node: {
+    __dirname: false,
+    __filename: false
+  }
 
 };
 

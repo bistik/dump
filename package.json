@@ -5,10 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron src/index.js",
-    "dev": "webpack --config webpack.dev.js",
-    "web": "webpack-dev-server --config webpack.dev.js --hot --inline",
-    "shit": "webpack --config dump.webpack.config.js",
+    "start": "cross-env NODE_ENV=dev electron src/index.js",
+    "dev": "cross-env NODE_ENV=dev webpack --config webpack.dev.js",
+    "web": "cross-env NODE_ENV=dev webpack-dev-server --config webpack.dev.js --inline",
     "production": "webpack --config webpack.prod.js",
     "rebuild": "electron-rebuild -f -w sqlite3"
   },
@@ -22,8 +21,11 @@
     "babel-preset-react": "^6.24.1",
     "bootstrap": "^4.0.0-beta.2",
     "create-react-class": "^15.6.2",
+    "cross-env": "^5.1.1",
     "css-loader": "^0.28.7",
+    "devtron": "^1.4.0",
     "electron": "^1.7.9",
+    "electron-devtools-installer": "^2.2.1",
     "electron-rebuild": "^1.6.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "html-webpack-plugin": "^2.30.1",
@@ -37,8 +39,10 @@
     "webpack-dev-server": "^2.9.4"
   },
   "dependencies": {
+    "electron-debug": "^1.4.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-hot-loader": "^3.1.1",
     "sqlite3": "^3.1.13"
   }
 }
