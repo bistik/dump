@@ -6,7 +6,7 @@ const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-d
 let mainWindow;
 
 function loadWindow () {
-  mainWindow = new BrowserWindow({show: false, width: 800, height: 600});
+  mainWindow = new BrowserWindow({show: false, width: 1024, height: 768});
   console.log('process', process.env.NODE_ENV)
   mainWindow.loadURL(path.join('file://', __dirname, '../dist/index.html'));
 

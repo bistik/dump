@@ -8,6 +8,7 @@ import { AppContainer } from 'react-hot-loader';
 
 console.log('process.env.NODE_ENV', process.env.NODE_ENV)
 console.log('process.env.UPGRADE_EXTENSIONS', process.env.UPGRADE_EXTENSIONS)
+
 db.test();
 db.info();
 

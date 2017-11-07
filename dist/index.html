@@ -4,16 +4,13 @@
         <link rel="stylesheet" media="screen" href="styles.css">
     </head>
     <body>
-        <div class="container" id="root">
+        <div class="container-fluid" id="root">
         </div>
         <script>
         {
-            console.log(process.env);
             if (process.env.NODE_ENV == 'dev') {
-                console.log('dev mode ON');
                 document.write('<script defer src="http://localhost:8080/dist/bundle.js"><\/script>');
             } else {
-                console.log('dev mode OFF');
                 document.write('<script defer src="bundle.js"><\/script>');
              }
          }
