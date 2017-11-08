@@ -1,31 +1,35 @@
 import React from 'react';
+import { Route, NavLink, HashRouter } from 'react-router-dom';
 import MainLeftNav from './MainLeftNav';
-import MainContent from './MainContent';
+import Overview from './Overview';
+import Folders from './Folders';
+import Todo from './Todo';
 
 class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      content: 'home'
+      content: 'overview'
     };
   }
 
-  handleMenuChange(selected, event) {
+  handleMenuChange(event) {
     event.preventDefault();
-    console.log('selected', selected);
-    console.log('event', event.target.href);
-    this.setState({
-      content: selected
-    })
   }
 
   render(){
 
      return(
+        <HashRouter>
          <div className="row">
-            <MainLeftNav handler={this.handleMenuChange.bind(this, this.props.href)}/>
-            <MainContent selected={this.state.content} />
+            <MainLeftNav />
+            <div className="col-xs-9">
+              <Route exact path="/overview" component={Overview} />
+              <Route path="/folders" component={Folders} />
+              <Route path="/todo" component={Todo} />
+            </div>
          </div>
+       </HashRouter>
       );
    }
 }

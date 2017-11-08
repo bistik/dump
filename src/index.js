@@ -7,15 +7,14 @@ let mainWindow;
 
 function loadWindow () {
   mainWindow = new BrowserWindow({show: false, width: 1024, height: 768});
-  console.log('process', process.env.NODE_ENV)
+  console.log('env.NODE_ENV', process.env.NODE_ENV)
   mainWindow.loadURL(path.join('file://', __dirname, '../dist/index.html'));
 
   if (process.env.NODE_ENV == 'dev' || true) {
     require('electron-debug')();
     mainWindow.webContents.openDevTools();
-    console.log('forceDownload', process.env.UPGRADE_EXTENSIONS);
-    console.log('forceDownload', process.env.NODE_ENV);
-    var upgradeExtensions = true
+    console.log('env.UPGRADE_EXTENSIONS', process.env.UPGRADE_EXTENSIONS);
+    var upgradeExtensions = process.env.UPGRADE_EXTENSIONS == 1;
     installExtension(REACT_DEVELOPER_TOOLS, upgradeExtensions)
       .then((name) => console.log(`Added Extension:  ${name}`))
       .catch((err) => console.log('An error occurred: ', err));

@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Homepage extends React.Component {
+class Overview extends React.Component {
   render () {
     return (
       <div className="col-xs-9">
@@ -36,4 +36,4 @@ class Homepage extends React.Component {
   }
 }
 
-module.exports = Homepage;
+module.exports = Overview;

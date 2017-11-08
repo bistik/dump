@@ -1,41 +1,25 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 class MainLeftNav extends React.Component {
-
-  constructor() {
-    super()
-    this.state = {
-      selected: 'home'
-    }
-  }
-
-  showOverview (event) {
-    event.preventDefault();
-    this.props.handler('overview')
-    console.log('overview');
-  }
-
   render() {
     return (
       <nav className="bg-light col-xs-3 sidebar mr-5">
         <ul className="nav nav-pills flex-column">
             <li className="nav-item">
-              <a href="/overview" className="nav-link" onClick={this.props.handler}>Overview</a>
+              <NavLink to="/overview" className="nav-link" activeClassName="active">Overview</NavLink>
             </li>
             <li className="nav-item">
-              <a href="#" className="nav-link">Folders</a>
+              <NavLink to="/folders" className="nav-link" activeClassName="active">Folders</NavLink>
             </li>
             <li>
-              <a href="#" className="nav-link">Todo</a>
+              <NavLink to="/todo" className="nav-link" activeClassName="active">Todo</NavLink>
             </li>
             <li>
               <a href="#" className="nav-link">Notes</a>
             </li>
             <li>
               <a href="#" className="nav-link">Reminders</a>
-            </li>
-            <li>
-              <a href="#" className="nav-link">Notes</a>
             </li>
             <li>
               <a href="#" className="nav-link">Lists</a>

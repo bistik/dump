@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cross-env NODE_ENV=dev electron src/index.js",
     "dev": "cross-env NODE_ENV=dev webpack --config webpack.dev.js",
-    "web": "cross-env NODE_ENV=dev webpack-dev-server --config webpack.dev.js --inline",
+    "web": "cross-env UPGRADE_EXTENSIONS=1 NODE_ENV=dev webpack-dev-server --config webpack.dev.js --inline",
     "production": "webpack --config webpack.prod.js",
     "rebuild": "electron-rebuild -f -w sqlite3"
   },
@@ -43,6 +43,7 @@
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-hot-loader": "^3.1.1",
+    "react-router-dom": "^4.2.2",
     "sqlite3": "^3.1.13"
   }
 }
