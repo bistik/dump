@@ -1,14 +1,33 @@
 import React from 'react';
 import MainLeftNav from './MainLeftNav';
-import Homepage from './Homepage';
+import MainContent from './MainContent';
 
-export default class App extends React.Component {
-    render(){
-       return(
-           <div className="row">
-              <MainLeftNav />
-              <Homepage />
-           </div>
-        );
-     }
+class App extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      content: 'home'
+    };
+  }
+
+  handleMenuChange(selected, event) {
+    event.preventDefault();
+    console.log('selected', selected);
+    console.log('event', event.target.href);
+    this.setState({
+      content: selected
+    })
+  }
+
+  render(){
+
+     return(
+         <div className="row">
+            <MainLeftNav handler={this.handleMenuChange.bind(this, this.props.href)}/>
+            <MainContent selected={this.state.content} />
+         </div>
+      );
+   }
 }
+
+export default App;

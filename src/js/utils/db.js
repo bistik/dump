@@ -3,13 +3,14 @@ const userDataPath = (app || remote.app).getPath('userData');
 const sqlite3 = window.require('sqlite3').verbose();
 
 //var db = new sqlite3.Database(mainWindow.dbfile);
-let dbFile = userDataPath + '/dumpsqlite.db';
+let dbFile = userDataPath + '/dump.sqlite.db';
 let _db = new sqlite3.Database(dbFile);
 
 function createTables () {
     _db.serialize(function() {
-      _db.run("CREATE TABLE IF NOT EXISTS todo (info TEXT)");
-      _db.run("CREATE TABLE IF NOT EXISTS notes (info TEXT)");
+      _db.run("CREATE TABLE IF NOT EXISTS folder (name TEXT, parent_id INTEGER default 0, created_ts INTEGER, modified_ts INTEGER)");
+      _db.run("CREATE TABLE IF NOT EXISTS todo (body TEXT, folder_id INTEGER default 0, due_ts INTEGER, created_ts INTEGER)");
+      _db.run("CREATE TABLE IF NOT EXISTS note (body TEXT, folder_id INTEGER default 0, created_ts INTEGER, modified_ts INTEGER)");
     });
 }
 
@@ -22,7 +23,7 @@ function showInfo () {
   });
 }
 
-let db = {
+let Db = {
   test: createTables,
   info: showInfo     
       /*
@@ -37,4 +38,4 @@ let db = {
       });
       */
 };
-module.exports = db;
+module.exports = Db;

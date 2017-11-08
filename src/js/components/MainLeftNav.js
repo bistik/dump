@@ -1,12 +1,26 @@
 import React from 'react';
 
 class MainLeftNav extends React.Component {
+
+  constructor() {
+    super()
+    this.state = {
+      selected: 'home'
+    }
+  }
+
+  showOverview (event) {
+    event.preventDefault();
+    this.props.handler('overview')
+    console.log('overview');
+  }
+
   render() {
     return (
       <nav className="bg-light col-xs-3 sidebar mr-5">
         <ul className="nav nav-pills flex-column">
             <li className="nav-item">
-              <a href="#" className="nav-link">Overview</a>
+              <a href="/overview" className="nav-link" onClick={this.props.handler}>Overview</a>
             </li>
             <li className="nav-item">
               <a href="#" className="nav-link">Folders</a>

@@ -1,16 +1,12 @@
-//const foo = require('./foo.js');
-const db = require('./db.js');
+import Db from './utils/db';
 import React from 'react';
 import ReactDom from 'react-dom';
 import css from '../css/main.scss';
-import App from './components/App.js';
+import App from './components/App';
 import { AppContainer } from 'react-hot-loader';
 
-console.log('process.env.NODE_ENV', process.env.NODE_ENV)
-console.log('process.env.UPGRADE_EXTENSIONS', process.env.UPGRADE_EXTENSIONS)
-
-db.test();
-db.info();
+Db.test();
+Db.info();
 
 const render = Component => {
   ReactDom.render(
