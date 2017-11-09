@@ -1,14 +1,18 @@
 <html>
     <head>
         <title>Hello dump</title>
-        <link rel="stylesheet" media="screen" href="styles.css">
     </head>
     <body>
         <div class="container-fluid" id="root">
         </div>
         <script>
         {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = '/dist/style.css';
             if (process.env.NODE_ENV == 'dev') {
+                link.href = 'http://localhost:8080/dist/styles.css';
+                document.getElementsByTagName('head')[0].appendChild(link);
                 document.write('<script defer src="http://localhost:8080/dist/bundle.js"><\/script>');
             } else {
                 document.write('<script defer src="bundle.js"><\/script>');

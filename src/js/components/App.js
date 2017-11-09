@@ -2,8 +2,10 @@ import React from 'react';
 import { Route, NavLink, HashRouter } from 'react-router-dom';
 import MainLeftNav from './MainLeftNav';
 import Overview from './Overview';
-import Folders from './Folders';
 import Todo from './Todo';
+import Notes from './Notes';
+import Reminders from './Reminders';
+import Settings from './Settings';
 
 class App extends React.Component {
   constructor() {
@@ -23,10 +25,12 @@ class App extends React.Component {
         <HashRouter>
          <div className="row">
             <MainLeftNav />
-            <div className="col-xs-9">
+            <div className="col-9">
               <Route exact path="/overview" component={Overview} />
-              <Route path="/folders" component={Folders} />
               <Route path="/todo" component={Todo} />
+              <Route path="/notes" component={Notes} />
+              <Route path="/reminders" component={Reminders} />
+              <Route path="/settings" component={Settings} />
             </div>
          </div>
        </HashRouter>
